@@ -1,7 +1,7 @@
 User Story - Share
 =========================
 
-**Story:** As a customer, I want to be able to share the Youtube videos on social media.
+**Story:** As a customer, I want to be able to share the Youtube videos on social media, so that i can share videos with my friends
 
 **Background/Business value**: We want to be able to provide customers a better experience on Youtube by letting them easily share content on social media and in e-mail. This way new customers can discover Youtube and more people will be using our services.
 
