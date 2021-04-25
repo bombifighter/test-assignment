@@ -10,8 +10,9 @@ Bug Ticket - Notifications arriving late
 - Actual behaviour: the customer gets these notifications 2 or 3 hours later
 
 **Steps to reproduce:**
-1. subscribe to a channel
-2. upload a video to that channel or start a live stream on that channel
+1. Create a test account
+2. Subscribe to test account from own account
+3. Upload a video to test account
 
 **Severity, justification:**
 Medium severity, as users cannot watch their favorite content creators' videos and live streams when they get published.
