@@ -1,4 +1,4 @@
-Bug Ticket - Volume adjust on Windows 10 Home 
+Bug Ticket - Volume adjust on Windows 10 Home does not work
 ===================================
 
 **Description:** When I try to increase or decrease volume on my computer, the volume of YouTube does not change.
