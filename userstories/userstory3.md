@@ -1,7 +1,7 @@
 User Story - Forgot password
 =========================
 
-**Story:** As a customer, I want to be able to reset my password on my account if I forget it.
+**Story:** As a customer, I want to be able to reset my password on my account if I forget it, so that I don't need to create a new account.
 
 **Background/Business value**: We want to be able to allow customers to reset their password.
 By providing them this feature they won't leave the page, or create new account if they can't log in.
