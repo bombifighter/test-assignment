@@ -14,4 +14,4 @@ Bug Ticket - Volume adjust on Windows 10 Home does not work
 2. try to adjust system volume
 
 **Severity, justification:**
-Medium serenity, as the bug doesn't affect all of the users (about 10%) and affected users still can adjust volume on the site.
+Medium severity, as the bug doesn't affect all of the users (about 10%) and affected users still can adjust volume on the site.
