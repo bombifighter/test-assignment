@@ -1,5 +1,8 @@
 package com.unideb.stepdef;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import com.unideb.TestRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -27,7 +30,7 @@ public class StepDefinitionYTLanguage extends TestRunner {
     }
 
     @Given("^I have opened the browser for language test$")
-    public void openBrowserYTTranscript() {
+    public void openBrowserYTTranscript throws MalformedURLException() {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("browser", "Chrome");
         caps.setCapability("browser_version", "85.0");
