@@ -24,7 +24,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class StepDefinitionYTLoginNeeded extends TestRunner {
 
     private void agree() {
-        WebElement agreeButton = driver.findElement(By.cssSelector("button.VfPpkd-LgbsSe"));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement agreeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.VfPpkd-LgbsSe")));
         agreeButton.click();
     }
 
@@ -47,19 +48,24 @@ public class StepDefinitionYTLoginNeeded extends TestRunner {
 
     @When("I click on the {string} button")
     public void clickButton(String button){
-        WebElement theButton = driver.findElement(By.xpath(button));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement theButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(button)));
         theButton.click();
     }
 
     @When("^I click on the Login button$")
     public void clickLogin(){
-        WebElement loginButton = driver.findElement(By.cssSelector("#message-button"));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div/ytd-page-manager/ytd-browse[2]/ytd-two-column-browse-results-renderer/div[1]/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-background-promo-renderer/div[2]/ytd-button-renderer/a/tp-yt-paper-button")));
         loginButton.click();
     }
 
-    @Then("The destination URL should be {string}")
-    public void getURL(String url) {
-        assertEquals(driver.getCurrentUrl(), url);
+    @Then("^The destination URL should be bejelentkezes$")
+    public void getTitle() {
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[1]/div/h1/span")));
+
+        assertEquals(text.getText(), "Bejelentkezés");
     }
 
 }

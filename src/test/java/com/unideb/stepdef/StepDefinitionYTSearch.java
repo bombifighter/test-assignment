@@ -55,7 +55,7 @@ public class StepDefinitionYTSearch extends TestRunner {
     @Then("The title element {string} should be {string}")
     public void getElementText(String titleelement, String title) {
         WebDriverWait wait = new WebDriverWait(driver,5);
-        WebElement videoTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(titleelement)));;
+        WebElement videoTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(titleelement)));
         assertEquals(videoTitle.getText(), title);
     }
     
