@@ -11,4 +11,4 @@ Feature: YTloginfail
 
     Examples:
       | fromurl                    | wrongusername       | responsetext                                                                                                     | text                         |
-      | "https://www.youtube.com/" | "asdasdfdfafadfasdasd" | "#view_container > div > div > div.pwWryf.bxPAYd > div > div.WEQkZc > div > form > span > section > div > div > div.d2CFce.cDSmF.cxMOTc > div > div.LXRPh > div.dEOOab.RxsGPe > div" | "Couldn’t find your Google Account"|
+      | "https://www.youtube.com/" | "asdasdfdfafadfasdasd" | "#view_container > div > div > div.pwWryf.bxPAYd > div > div.WEQkZc > div > form > span > section > div > div > div.d2CFce.cDSmF.cxMOTc > div > div.LXRPh > div.dEOOab.RxsGPe > div" | "Couldn't find your Google Account"|
