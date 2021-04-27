@@ -1,28 +1,19 @@
 package com.unideb.stepdef;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import com.unideb.TestRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 import static org.testng.Assert.assertEquals;
 
 public class StepDefinitionYTLanguage extends TestRunner {
-    public static final String USERNAME = System.getenv("USERNAME");
-    public static final String AUTOMATE_KEY = System.getenv("AUTOMATE_KEY");
-    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + System.getenv("URL");
-
     private void agreeCookies() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement agreeButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.VfPpkd-LgbsSe")));
@@ -30,16 +21,9 @@ public class StepDefinitionYTLanguage extends TestRunner {
     }
 
     @Given("^I have opened the browser for language test$")
-    public void openBrowserYTTranscript() throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("os", "Windows");
-        caps.setCapability("os_version", "10");
-        caps.setCapability("browser", "Chrome");
-        caps.setCapability("browser_version", "latest");
-        caps.setCapability("resolution", "1440x900");
-        caps.setCapability("browserstack.local", "false");
-        caps.setCapability("browserstack.selenium_version", "3.141.59");
-        driver = new RemoteWebDriver(new URL(URL), caps);
+    public void openBrowserYTTranscript(){
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
     }
 
     @When("^I maximize the window for language test$")
