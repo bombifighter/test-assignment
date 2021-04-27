@@ -22,19 +22,19 @@ public class StepDefinitionYTSkipAd extends TestRunner {
         agreeButton.click();
     }
 
-    @Given("^I have opened the browser$")
+    @Given("^I have opened the browser for ad test$")
     public void openBrowser() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
 
-    @When("I open the YouTube {string} website")
+    @When("I open the YouTube {string} website for ad test")
     public void goToYT(String fromurl) {
         driver.navigate().to(fromurl);
         agree();
     }
 
-    @When("^I maximize the window$")
+    @When("^I maximize the window for ad test$")
     public void maximizeWindow() {
         driver.manage().window().maximize();
     }
