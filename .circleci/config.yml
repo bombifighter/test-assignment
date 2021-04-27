@@ -10,14 +10,7 @@ jobs:
       - image: cimg/openjdk:11.0-browsers
     steps:
       - checkout
-      - run: sudo apt-get install libnspr4 libnss3 libnss3-nssdb libnss3-tools
-      - restore_cache:
-          key: circleci-java-selenium-{{ checksum "pom.xml" }}
       - run: mvn clean verify
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: circleci-java-selenium-{{ checksum "pom.xml" }}
       - store_test_results:
           path: target/cucumber-reports
       - store_artifacts:
