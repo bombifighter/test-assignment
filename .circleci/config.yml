@@ -1,12 +1,9 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@0.0.12
-
 jobs:
   test:  
     docker:
-      - image: circleci/openjdk:8-jdk-node
+      - image: cimg/openjdk:11.0-browsers
     steps:
       - checkout
       - run: mvn clean verify
