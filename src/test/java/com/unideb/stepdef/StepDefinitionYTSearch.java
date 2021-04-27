@@ -23,7 +23,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class StepDefinitionYTSearch extends TestRunner {
 
     private void agree() {
-        WebElement agreeButton = driver.findElement(By.cssSelector("button.VfPpkd-LgbsSe"));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement agreeButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.VfPpkd-LgbsSe")));
         agreeButton.click();
     }
 
@@ -46,9 +47,10 @@ public class StepDefinitionYTSearch extends TestRunner {
 
     @When("I enter {string} in the search bar")
     public void searchRick(String searchwords) {
-        WebElement searchBar = driver.findElement(By.cssSelector("input#search"));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement searchBar = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input#search")));
         searchBar.sendKeys(searchwords);
-        WebElement searchButton = driver.findElement(By.cssSelector("#search-icon-legacy"));
+        WebElement searchButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#search-icon-legacy")));
         searchButton.click();
     }
 

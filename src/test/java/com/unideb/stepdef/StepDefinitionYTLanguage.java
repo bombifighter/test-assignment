@@ -17,7 +17,8 @@ import static org.testng.Assert.assertEquals;
 public class StepDefinitionYTLanguage extends TestRunner {
 
     private void agreeCookies() {
-        WebElement agreeButton = driver.findElement(By.cssSelector("button.VfPpkd-LgbsSe"));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement agreeButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.VfPpkd-LgbsSe")));
         agreeButton.click();
     }
 
@@ -45,13 +46,14 @@ public class StepDefinitionYTLanguage extends TestRunner {
         moreOptions.click();
         WebElement languageMenuButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/ytd-app/ytd-popup-container/tp-yt-iron-dropdown/div/ytd-multi-page-menu-renderer/div[3]/div[1]/yt-multi-page-menu-section-renderer[1]/div[2]/ytd-compact-link-renderer[1]/a/tp-yt-paper-item")));
         languageMenuButton.click();
-        WebElement transcriptButton = driver.findElement(By.xpath("//*[text()='" + language + "']"));
+        WebElement transcriptButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='" + language + "']")));
         transcriptButton.click();
     }
 
     @Then("Login button contains {string}")
     public void loginButtonContains(String text) {
-        WebElement loginButtonText = driver.findElement(By.xpath("/html/body/ytd-app/div/div/ytd-masthead/div[3]/div[3]/div[2]/ytd-button-renderer/a/tp-yt-paper-button/yt-formatted-string"));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        WebElement loginButtonText = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/ytd-app/div/div/ytd-masthead/div[3]/div[3]/div[2]/ytd-button-renderer/a/tp-yt-paper-button/yt-formatted-string")));
         assertEquals(loginButtonText.getText(), text);
     }
 
