@@ -30,7 +30,7 @@ public class StepDefinitionYTLanguage extends TestRunner {
     }
 
     @Given("^I have opened the browser for language test$")
-    public void openBrowserYTTranscript throws MalformedURLException() {
+    public void openBrowserYTTranscript() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("browser", "Chrome");
         caps.setCapability("browser_version", "85.0");
