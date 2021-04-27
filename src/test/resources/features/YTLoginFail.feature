@@ -1,4 +1,4 @@
-Feature: YTloginfail
+Feature: YTLoginfail
 
   Scenario Outline: Login fail
     Given I have opened the browser for YT Login fail

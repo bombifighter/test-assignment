@@ -45,7 +45,6 @@ public class StepDefinitionYTLoginFail extends TestRunner {
     public void clickLogin() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"buttons\"]/ytd-button-renderer/a")));
-        //WebElement loginButton = driver.findElement(By.xpath("//*[@id=\"buttons\"]/ytd-button-renderer/a"));
         loginButton.click();
     }
 
@@ -53,7 +52,6 @@ public class StepDefinitionYTLoginFail extends TestRunner {
     public void writeWrongUsername(String wrongusername) {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[1]/div/div[1]/input")));
-        //WebElement usernameField = driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[1]/div/div[1]/input"));
         usernameField.sendKeys(wrongusername);
     }
 
@@ -61,7 +59,6 @@ public class StepDefinitionYTLoginFail extends TestRunner {
     public void clickNext() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"identifierNext\"]/div/button/div[2]")));
-        //WebElement loginButton = driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/div/button/div[2]"));
         loginButton.click();
     }
 
@@ -70,7 +67,6 @@ public class StepDefinitionYTLoginFail extends TestRunner {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement resp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(responsetext)));
         String response = resp.getText();
-        System.out.println(response);
         assertEquals(response, text);
     }
 
