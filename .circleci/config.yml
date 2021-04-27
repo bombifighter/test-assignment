@@ -1,12 +1,21 @@
 version: 2.1
 
+orbs:
+  maven: circleci/maven@0.0.12
+
 jobs:
   test:  
     docker:
       - image: cimg/openjdk:11.0-browsers
     steps:
       - checkout
+      - restore_cache:
+          key: circleci-java-selenium-{{ checksum "pom.xml" }}
       - run: mvn clean verify
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: circleci-java-selenium-{{ checksum "pom.xml" }}
       - store_test_results:
           path: target/cucumber-reports
       - store_artifacts:
