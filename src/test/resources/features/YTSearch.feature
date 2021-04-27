@@ -1,4 +1,4 @@
-Feature: YTsearch
+Feature: YTSearch
 
   Scenario Outline: Search rolls
     Given I have opened the browser

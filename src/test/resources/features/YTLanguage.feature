@@ -1,4 +1,4 @@
-Feature: YTlanguage
+Feature: YTLanguage
 
   Scenario Outline: Language changes
     Given I have opened the browser for language test
