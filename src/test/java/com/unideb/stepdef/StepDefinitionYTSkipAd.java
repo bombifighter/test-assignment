@@ -1,6 +1,5 @@
 package com.unideb.stepdef;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
 import org.openqa.selenium.By;
@@ -44,17 +43,6 @@ public class StepDefinitionYTSkipAd extends TestRunner {
         driver.manage().window().maximize();
     }
 
-
-/*
-    @When("^I click skip ad button$")
-    public void skipAd() {
-        WebDriverWait wait = new WebDriverWait(driver,10);
-        WebElement skipButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#skip-button\\:6 > span > button")));
-        if (skipButton == null)
-        skipButton.click();
-
-    }
-*/
     @Then("^Skip the ad$")
     public void checkVideo() {
         WebDriverWait wait = new WebDriverWait(driver,10);

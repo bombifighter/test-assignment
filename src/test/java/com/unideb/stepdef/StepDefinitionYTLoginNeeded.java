@@ -2,18 +2,12 @@ package com.unideb.stepdef;
 
 import static org.testng.Assert.assertEquals;
 
-import io.cucumber.java.en.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.unideb.TestRunner;
 
-import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeStep;
-import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -60,12 +54,12 @@ public class StepDefinitionYTLoginNeeded extends TestRunner {
         loginButton.click();
     }
 
-    @Then("^The destination URL should be bejelentkezes$")
+    @Then("^The destination page title should be 'Sign in'$")
     public void getTitle() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[1]/div/h1/span")));
 
-        assertEquals(text.getText(), "Bejelentkezés");
+        assertEquals(text.getText(), "Sign in");
     }
 
 }

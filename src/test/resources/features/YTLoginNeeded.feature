@@ -6,7 +6,7 @@ Feature: YTLoginNeeded
     And I open the YouTube <fromurl> website for YT Login needed test
     And I click on the <button> button
     And I click on the Login button
-    Then The destination URL should be bejelentkezes
+    Then The destination page title should be 'Sign in'
 
     Examples:
       | fromurl                       | button |
