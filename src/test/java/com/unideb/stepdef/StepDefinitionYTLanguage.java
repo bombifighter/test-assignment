@@ -20,8 +20,8 @@ import static org.testng.Assert.assertEquals;
 
 public class StepDefinitionYTLanguage extends TestRunner {
     public static final String USERNAME = System.getenv("USERNAME");
-  public static final String AUTOMATE_KEY = System.getenv("AUTOMATE_KEY");
-  public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + System.getenv("URL");
+    public static final String AUTOMATE_KEY = System.getenv("AUTOMATE_KEY");
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + System.getenv("URL");
 
     private void agreeCookies() {
         WebDriverWait wait = new WebDriverWait(driver,5);
@@ -32,12 +32,13 @@ public class StepDefinitionYTLanguage extends TestRunner {
     @Given("^I have opened the browser for language test$")
     public void openBrowserYTTranscript() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("browser", "Chrome");
-        caps.setCapability("browser_version", "85.0");
         caps.setCapability("os", "Windows");
         caps.setCapability("os_version", "10");
+        caps.setCapability("browser", "Chrome");
+        caps.setCapability("browser_version", "latest");
         caps.setCapability("resolution", "1440x900");
-        caps.setCapability("name", "Bstack-[Java] Sample Test");
+        caps.setCapability("browserstack.local", "false");
+        caps.setCapability("browserstack.selenium_version", "3.141.59");
         driver = new RemoteWebDriver(new URL(URL), caps);
     }
 
