@@ -6,7 +6,7 @@ orbs:
 jobs:
   test:  
     docker:
-      - image: cimg/openjdk:11.0-browsers
+      - image: circleci/openjdk:8-jdk-node
     steps:
       - checkout
       - restore_cache:
