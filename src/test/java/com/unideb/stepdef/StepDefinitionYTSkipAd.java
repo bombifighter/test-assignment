@@ -1,6 +1,7 @@
 package com.unideb.stepdef;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,11 +15,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class StepDefinitionYTSkipAd extends TestRunner {
 
     private void agree() {
-        WebElement agreeButton = driver.findElement(By.cssSelector("button.VfPpkd-LgbsSe"));
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebElement agreeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.VfPpkd-LgbsSe")));
+
         agreeButton.click();
     }
 
@@ -39,24 +44,31 @@ public class StepDefinitionYTSkipAd extends TestRunner {
         driver.manage().window().maximize();
     }
 
-    @When("I open the video {int}")
-    public void openVideo(int number) {
-        WebElement video = driver.findElement(By.cssSelector("#contents > ytd-rich-item-renderer:nth-child(" + number + ")"));
-        video.click();
 
-    }
-
+/*
     @When("^I click skip ad button$")
     public void skipAd() {
-        WebElement skipButton = driver.findElement(By.cssSelector("#skip-button\\:6 > span > button"));
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebElement skipButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#skip-button\\:6 > span > button")));
+        if (skipButton == null)
         skipButton.click();
 
     }
-
-    @Then("^The ad replaced by the video$")
+*/
+    @Then("^Skip the ad$")
     public void checkVideo() {
-        WebElement video = driver.findElement(By.cssSelector("#movie_player > div.html5-video-container > video"));
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebElement skipButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#skip-button\\:6 > span > button")));
 
+        WebElement video = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#movie_player > div.html5-video-container > video")));
+        String adsrc = video.getAttribute("src");
+
+        skipButton.click();
+
+        video = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#movie_player > div.html5-video-container > video")));
+        String videosrc = video.getAttribute("src");
+
+        assertNotEquals(adsrc,videosrc);
     }
 
     @After

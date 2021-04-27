@@ -1,14 +1,13 @@
 Feature: YTSkipAd
 
-  Scenario Outline: Subscribe to channel
+  Scenario Outline: Skip Ad
     Given I have opened the browser for ad test
     When I maximize the window for ad test
     And I open the YouTube <fromurl> website for ad test
-    And I open the video <number>
-    And I click skip ad button
-    Then The ad replaced by the video
+    Then Skip the ad
 
     Examples:
-      | fromurl                   | number |
-      | "https://www.youtube.com/"| 1      |
-      | "https://www.youtube.com/"| 2      |
+      | fromurl                                      |
+      | "https://www.youtube.com/watch?v=PAgQHcKMOIk"|
+      | "https://www.youtube.com/watch?v=SiBXgBUUihM"|
+
