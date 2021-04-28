@@ -59,7 +59,7 @@ public class StepDefinitionYTSkipAd extends TestRunner {
 
     @Then("^Skip the ad$")
     public void checkVideo() {
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver,15);
         WebElement skipButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#skip-button\\:6 > span > button")));
 
         WebElement video = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#movie_player > div.html5-video-container > video")));
