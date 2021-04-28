@@ -2,9 +2,10 @@ package com.unideb.stepdef;
 
 import static org.testng.Assert.assertEquals;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.unideb.TestRunner;
 
@@ -12,12 +13,20 @@ import com.unideb.TestRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class StepDefinitionYTLoginFail extends TestRunner {
+
+    public static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    public static final String AUTOMATE_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     private void agree() {
         WebElement agreeButton = driver.findElement(By.cssSelector("button.VfPpkd-LgbsSe"));
@@ -25,9 +34,16 @@ public class StepDefinitionYTLoginFail extends TestRunner {
     }
 
     @Given("^I have opened the browser for YT Login fail$")
-    public void openBrowserYTLoginFail() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+    public void openBrowserYTLoginFail() throws MalformedURLException {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("browser", "Chrome");
+        caps.setCapability("browser_version", "85.0");
+        caps.setCapability("os", "Windows");
+        caps.setCapability("os_version", "10");
+        caps.setCapability("resolution", "1440x900");
+        caps.setCapability("name", "Bstack Login fail Test");
+        caps.setCapability("browserstack.local", "true");
+        driver = new RemoteWebDriver(new URL(URL), caps);
     }
 
     @When("I open the YouTube {string} website for YT Login Fail")
@@ -65,9 +81,16 @@ public class StepDefinitionYTLoginFail extends TestRunner {
     @Then("The {string} should be {string}")
     public void getResponseText(String responsetext, String text) {
         WebDriverWait wait = new WebDriverWait(driver,5);
-        WebElement resp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(responsetext)));
+        WebElement resp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(responsetext)));
         String response = resp.getText();
         assertEquals(response, text);
+    }
+
+    @After
+    public void after(Scenario scenario) {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 }

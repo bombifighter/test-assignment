@@ -1,20 +1,29 @@
 package com.unideb.stepdef;
 
 import com.unideb.TestRunner;
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static org.testng.Assert.assertEquals;
 
 public class StepDefinitionYTLanguage extends TestRunner {
+
+    public static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    public static final String AUTOMATE_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
     private void agreeCookies() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement agreeButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.VfPpkd-LgbsSe")));
@@ -22,13 +31,16 @@ public class StepDefinitionYTLanguage extends TestRunner {
     }
 
     @Given("^I have opened the browser for language test$")
-    public void openBrowserYTTranscript() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--no-sandbox");
-        chromeOptions.addArguments("--disable-dev-shm-usage");
-        chromeOptions.addArguments("--remote-debugging-port=9222");
-        driver = new ChromeDriver(chromeOptions);
+    public void openBrowserYTTranscript() throws MalformedURLException {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("browser", "Chrome");
+        caps.setCapability("browser_version", "85.0");
+        caps.setCapability("os", "Windows");
+        caps.setCapability("os_version", "10");
+        caps.setCapability("resolution", "1440x900");
+        caps.setCapability("name", "Bstack Language Test");
+        caps.setCapability("browserstack.local", "true");
+        driver = new RemoteWebDriver(new URL(URL), caps);
     }
 
     @When("^I maximize the window for language test$")
@@ -58,6 +70,13 @@ public class StepDefinitionYTLanguage extends TestRunner {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement loginButtonText = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/ytd-app/div/div/ytd-masthead/div[3]/div[3]/div[2]/ytd-button-renderer/a/tp-yt-paper-button/yt-formatted-string")));
         assertEquals(loginButtonText.getText(), text);
+    }
+
+    @After
+    public void after(Scenario scenario) {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
 }

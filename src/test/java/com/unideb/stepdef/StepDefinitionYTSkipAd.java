@@ -4,7 +4,6 @@ import static org.testng.Assert.assertNotEquals;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.unideb.TestRunner;
 
@@ -13,11 +12,19 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class StepDefinitionYTSkipAd extends TestRunner {
+
+    public static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    public static final String AUTOMATE_KEY = System.getenv("BROWSERSTACK_ACCESS_KEY");
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     private void agree() {
         WebDriverWait wait = new WebDriverWait(driver,10);
@@ -27,9 +34,16 @@ public class StepDefinitionYTSkipAd extends TestRunner {
     }
 
     @Given("^I have opened the browser for ad test$")
-    public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+    public void openBrowser() throws MalformedURLException {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("browser", "Chrome");
+        caps.setCapability("browser_version", "85.0");
+        caps.setCapability("os", "Windows");
+        caps.setCapability("os_version", "10");
+        caps.setCapability("resolution", "1440x900");
+        caps.setCapability("name", "Bstack Skip ad Test");
+        caps.setCapability("browserstack.local", "true");
+        driver = new RemoteWebDriver(new URL(URL), caps);
     }
 
     @When("I open the YouTube {string} website for ad test")
@@ -62,7 +76,7 @@ public class StepDefinitionYTSkipAd extends TestRunner {
     @After
     public void after(Scenario scenario) {
         if (driver != null) {
-            driver.close();
+            driver.quit();
         }
     }
 }

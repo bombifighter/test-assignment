@@ -10,5 +10,5 @@ Feature: YTLoginfail
     Then The <responsetext> should be <text>
 
     Examples:
-      | fromurl                    | wrongusername       | responsetext                                                                                                     | text                         |
-      | "https://www.youtube.com/" | "asdasdfdfafadfasdasd" | "#view_container > div > div > div.pwWryf.bxPAYd > div > div.WEQkZc > div > form > span > section > div > div > div.d2CFce.cDSmF.cxMOTc > div > div.LXRPh > div.dEOOab.RxsGPe > div" | "Couldn't find your Google Account"|
+      | fromurl                    | wrongusername          | responsetext                                                                                                                      | text                                |
+      | "https://www.youtube.com/" | "asdasdfdfafadfasdasd" | "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[2]/div[2]/div" | "Couldn't find your Google Account" |
