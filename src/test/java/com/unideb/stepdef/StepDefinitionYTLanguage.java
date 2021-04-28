@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.testng.Assert.assertEquals;
 
 public class StepDefinitionYTLanguage extends TestRunner {
-
     private void agreeCookies() {
         WebDriverWait wait = new WebDriverWait(driver,5);
         WebElement agreeButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.VfPpkd-LgbsSe")));
@@ -23,7 +22,7 @@ public class StepDefinitionYTLanguage extends TestRunner {
     }
 
     @Given("^I have opened the browser for language test$")
-    public void openBrowserYTTranscript() {
+    public void openBrowserYTTranscript() throws MalformedURLException {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");

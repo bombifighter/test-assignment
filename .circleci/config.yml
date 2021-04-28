@@ -1,0 +1,30 @@
+version: 2.1
+
+orbs:
+  maven: circleci/maven@0.0.12
+  browser-tools: circleci/browser-tools@1.1.3
+
+jobs:
+  test:  
+    docker:
+      - image: cimg/openjdk:11.0-browsers
+      - image: selenium/standalone-chrome:3.141.59
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: create docker network
+          command: docker network create grid
+      - run:
+          name: install selenium-hub
+          command: docker run -d --rm -p 4444:4444 --net grid --name selenium-hub selenium/hub:3.141.59
+      - run: mvn clean verify
+      - store_test_results:
+          path: target/cucumber-reports
+      - store_artifacts:
+          path: target/generated-report
+
+workflows:
+  maventest: 
+    jobs:
+      - test
