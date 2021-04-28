@@ -26,7 +26,7 @@ public class StepDefinitionYTLanguage extends TestRunner {
     public void openBrowserYTTranscript() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--no-sandbox");
         driver = new ChromeDriver(chromeOptions);
     }
 
