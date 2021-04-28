@@ -27,4 +27,8 @@ jobs:
 workflows:
   maventest: 
     jobs:
-      - test
+      - test:
+        filters:
+             branches:
+               only:
+                 - main
