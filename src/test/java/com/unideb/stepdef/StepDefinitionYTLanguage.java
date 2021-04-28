@@ -8,6 +8,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,7 +25,11 @@ public class StepDefinitionYTLanguage extends TestRunner {
     @Given("^I have opened the browser for language test$")
     public void openBrowserYTTranscript() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
+        chromeOptions.addArguments("--remote-debugging-port=9222");
+        driver = new ChromeDriver(chromeOptions);
     }
 
     @When("^I maximize the window for language test$")
