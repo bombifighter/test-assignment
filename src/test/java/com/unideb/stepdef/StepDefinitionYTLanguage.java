@@ -28,6 +28,7 @@ public class StepDefinitionYTLanguage extends TestRunner {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
+        chromeOptions.addArgument("--remote-debugging-port=9222");
         driver = new ChromeDriver(chromeOptions);
     }
 
