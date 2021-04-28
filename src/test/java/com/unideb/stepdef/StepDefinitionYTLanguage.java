@@ -22,7 +22,7 @@ public class StepDefinitionYTLanguage extends TestRunner {
     }
 
     @Given("^I have opened the browser for language test$")
-    public void openBrowserYTTranscript() throws MalformedURLException {
+    public void openBrowserYTTranscript() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
